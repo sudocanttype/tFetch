@@ -85,8 +85,7 @@ def init_weather():
     try:
         info = getWeather(apikey, location, apiUnits)
     except Exception as e:
-        time.sleep(2)
-        print(fuck)
+        print(e)
         exit(1)
 
     return info
