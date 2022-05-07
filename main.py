@@ -79,8 +79,6 @@ def init_weather():
     apikey = os.getenv("API")
     location = 'houston'
     apiUnits = 'imperial' #for us filthy americans
-    #wait a couple seconds on run, because for some reason without this it returns HTTPSConnectionPool Max retries exceeded
-    #also added fallback because it would give errors
 
     try:
         info = getWeather(apikey, location, apiUnits)
@@ -101,4 +99,4 @@ if __name__ == "__main__":
     print(f"Feels Like Temperature: {weatherInfo['temp_feels']}°F")
     print(f"Humidity: {weatherInfo['humidity']}")
     print()
-    print(f"Workspaces: {get_i3_workspaces()}")
+    print(f"Live Workspaces: {get_i3_workspaces()}")
