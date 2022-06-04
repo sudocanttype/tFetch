@@ -67,25 +67,11 @@ def get_i3_workspaces():
     #i3-msg returns a string json
 
     active_workspaces = []
-    i3output = subprocess.check_output('i3-msg -t get_tree', stderr=subprocess.STDOUT, shell=True)
+    i3output = subprocess.check_output('i3-msg -t get_workspaces', stderr=subprocess.STDOUT, shell=True)
     dict_output = json.loads(i3output)
 
-    target = dict_output["nodes"]
-    #a bunch of nodes stored within nodes
-    number_of_monitors = len(target) - 1
-    #the active workspaces are separated by display
-
-    for i in range(1,number_of_monitors+1):
-        temp = target[i]["nodes"]
-        temp_num = len(temp)-1
-
-        for j in range(1,temp_num+1):
-            temp2 = temp[j]["nodes"]
-
-            for fuck in temp2:
-                print(fuck['num'])
-
-            # active_workspaces.append(temp2)
+    for i in dict_output:
+        active_workspaces.append(str(i['num']))
 
     return ", ".join(active_workspaces)
 
